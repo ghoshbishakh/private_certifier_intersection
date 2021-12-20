@@ -1,3 +1,18 @@
+# Private Certifier Intersection
+
+This repository is the implementation of the Private Certifier Intersection protocol for Privacy Preserving Trust Anchor Negotiation.
+It is based on the MP-SPDZ framework.
+
+`generate_pci_input.py` generates inputs from the two parties containing certifier public keys and elgamal signatures on their claims.
+It uses `p3_pair.py` for generating primes.
+
+`Programs/Source/tanegotiation.mpc` is the MP-SPDZ implementation for the PCI protocol.
+
+`repeat.sh` script can be used to run and repeat the PCI protcol for benchmarking purpose.
+
+<hr>
+
+
 # Multi-Protocol SPDZ [![Documentation Status](https://readthedocs.org/projects/mp-spdz/badge/?version=latest)](https://mp-spdz.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://dev.azure.com/data61/MP-SPDZ/_apis/build/status/data61.MP-SPDZ?branchName=master)](https://dev.azure.com/data61/MP-SPDZ/_build/latest?definitionId=7&branchName=master) [![Gitter](https://badges.gitter.im/MP-SPDZ/community.svg)](https://gitter.im/MP-SPDZ/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Software to benchmark various secure multi-party computation (MPC)

@@ -1,0 +1,23 @@
+expected 1, got 1
+expected 1, got 0
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+expected 1, got 1
+Time = 14.9025 seconds 
+Data sent = 969.076 MB in ~8464 rounds (party 0)
+Global data sent = 1938.12 MB (all parties)

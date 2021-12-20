@@ -1,0 +1,75 @@
+program.use_edabit(True)
+
+def test(actual, expected):
+
+    # you can reveal a number in order to print it
+
+    actual = actual.reveal()
+    print_ln('expected %s, got %s', expected, actual)
+
+N = 128
+
+A = 20
+B = 20
+
+# Public inputs
+p = public_input()
+g = public_input()
+g_raised_m = public_input()
+a = public_input()
+b = public_input()
+m = public_input()
+
+r_a_star = Matrix(A, N, cint)
+@for_range(a)
+def _(i):
+    @for_range(N)
+    def _(j):
+        r_a_star[i][j] = public_input()
+
+
+# Private inputs from A
+pub_a = Array(A, sint)
+pub_a.input_from(0)
+
+pub_a_raised_r = Array(A, sint)
+pub_a_raised_r.input_from(0)
+# sint().get_input_from(0)
+s_a = Matrix(A, N, sint)
+s_a.input_from(0)
+
+# Private inputs from B
+pub_b_raised_r = Array(A * B, sint)
+pub_b_raised_r.input_from(1)
+
+
+# Main loop
+eta = Array(1, sint)
+criteria_publickey = Array(1, sint)
+criteria_signature = Array(1, sint)
+
+randomvar = sint(13245)
+
+@for_range_opt(a)
+def _(i):
+    # Compute r^s
+    eta[0] = 1
+
+    @for_range(N)
+    def _(k):
+        eta[0] = eta[0] * ((s_a[i][k] * r_a_star[i][k]) + (1 - s_a[i][k]))
+        # test(eta[0], 11111111111111111)
+
+    # compute theta
+    theta = eta[0]*pub_a_raised_r[i]
+    # test(theta, g_raised_m)
+    criteria_signature[0] = theta -g_raised_m
+    # test(criteria_signature[0], 0)
+
+
+    criteria_publickey[0] = 1
+    @for_range(b)
+    def _(j):
+        criteria_publickey[0] =  criteria_publickey[0] * (pub_a_raised_r[i] - pub_b_raised_r[i*b + j])
+
+    test((criteria_signature[0] + (randomvar * criteria_publickey[0])) == 0, 1)
